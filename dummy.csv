@@ -1,0 +1,24 @@
+
+"My static website hosted on Amazon S3 and served through CloudFront is down. Why?
+Last updated: 2019-06-21
+I'm using Amazon Simple Storage Service (Amazon S3) to host a static website, and I'm using Amazon CloudFront to serve the website. However, the website is down. How can I fix this? 
+Resolution
+Before you begin, confirm the following:
+You have internet access.
+The origin domain name that's specified on your CloudFront distribution points to the correct S3 bucket with no typos or other errors.
+If you have internet access and the origin domain name is correct, then check the error response that you get from trying to access your website:
+403 Access Denied error
+A 403 Access Denied error indicates that there's a permissions problem that's causing your website to appear down. For troubleshooting instructions, see I’m using an S3 website endpoint as the origin of my CloudFront distribution. Why am I getting HTTP response code 403 (Access Denied)?
+Important: Be sure to check the Block Public Access settings for your website's S3 bucket. These settings can block anonymous requests to your website. Block Public Access settings can apply to AWS accounts or individual buckets.
+404 Not Found error
+A 404 Not Found error indicates that the request is pointing to a website object that doesn't exist. Check the following:
+Verify that the URL to the website object doesn't have any typos.
+Verify that the website object exists on the S3 bucket that's hosting your website. You can check the bucket using the Amazon S3 console. Or, you can run the list-objects command using the AWS Command Line Interface (AWS CLI).
+
+More details: https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/distribution-web-values-specify.html#DownloadDistValuesDomainName
+
+Internal error
+If the response indicates there's an internal error, then there might be an internal service issue that's affecting your website. Check the AWS Service Health Dashboard for possible issues.
+
+
+"
